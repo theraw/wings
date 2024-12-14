@@ -250,10 +250,11 @@ func (e *Environment) Create() error {
 		LogConfig: cfg.Docker.ContainerLogConfig(),
 
 		SecurityOpt:    []string{"no-new-privileges"},
-		ReadonlyRootfs: true,
+		ReadonlyRootfs: false,
+		CapAdd: []string{"NET_ADMIN", "SYS_CHROOT", "FOWNER", "SETGID"},
 		CapDrop: []string{
 			"setpcap", "mknod", "audit_write", "net_raw", "dac_override",
-			"fowner", "fsetid", "net_bind_service", "sys_chroot", "setfcap",
+		        "net_bind_service", "sys_admin", "setfcap",
 		},
 		NetworkMode: networkMode,
 		UsernsMode:  container.UsernsMode(cfg.Docker.UsernsMode),
