@@ -428,6 +428,12 @@ func (ip *InstallationProcess) Execute() (string, error) {
 				Type:     mount.TypeBind,
 				ReadOnly: false,
 			},
+        		{
+				Target:   "/srv",
+				Source:   "/srv/gamefiles",
+				Type:     mount.TypeBind,
+				ReadOnly: true,
+        		},
 		},
 		Resources: ip.resourceLimits(),
 		Tmpfs: map[string]string{
